@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
-#from django.http import HttpResponse
+from django.http import HttpResponse
 from django.contrib.messages import constants
 from django.contrib.auth.models import User
-from django.contrib import messages
+from django.contrib import messages, auth
+from django.contrib.auth import authenticate
 
 
 # Create your views here.
 def cadastro(request):
     if request.method == 'GET':
-        messages.add_message(request, constants.SUCCESS, "Cadastro Realizado com Sucesso!")
         return render(request, 'cadastro.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
@@ -39,3 +39,17 @@ def cadastro(request):
 def login(request):
     if request.method == "GET":
         return render(request, 'login.html')
+    elif request.methot == "POST":
+        username = request.POST.get('username')
+        senha = request.POST.get('senha')
+
+        user = authenticate(request, 
+                            username = username,
+                            password =senha)
+
+        if user:
+            auth.login(request, user)
+            return redirect("/mentorados/")
+        
+        messages.add_message(request, constants.ERROR, "'Username' ou 'Senha' Inválidos!")
+        return redirect("/login")
