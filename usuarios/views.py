@@ -39,11 +39,11 @@ def cadastro(request):
 def login(request):
     if request.method == "GET":
         return render(request, 'login.html')
+        
     elif request.methot == "POST":
-        username = request.POST.get('username')
-        senha = request.POST.get('senha')
-
-        user = authenticate(request, 
+        username    = request.POST.get('username')
+        senha       = request.POST.get('senha')
+        user        = authenticate(request, 
                             username = username,
                             password =senha)
 

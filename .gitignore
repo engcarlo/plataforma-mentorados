@@ -1,4 +1,7 @@
 /venv
 tailwind_test.html
-/core/__pycache__
-/usuarios/__pycache__
+/core/__pycache__/
+/usuarios/__pycache__/
+/usuarios/migrations/__pycache__/
+/mentorados/__pycache__/
+/mentorados/migrations/__pycache__/
